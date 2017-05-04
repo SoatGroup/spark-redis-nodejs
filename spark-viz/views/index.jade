@@ -1,0 +1,76 @@
+extends layout
+block content
+    // sub header
+    .container-fluid.container-fluid-spacious
+        .dashhead.m-t-sm
+            .dashhead-titles
+                h6.dashhead-subtitle Spark Streaming
+                h2.dashhead-title Data Visualization
+            //.btn-toolbar.dashhead-toolbar
+                //.btn-toolbar-item.input-with-icon
+                    //input.form-control(type='text', value='01/01/15 - 01/08/15', data-provide='datepicker')
+                    //span.icon.icon-calendar
+        .hr-divider.m-t.m-b-md
+            h3.hr-divider-content.hr-divider-heading Summary Metrics
+        .row.statcards
+            .col-md-4.m-b
+                .p-a.text-center
+                    span.statcard-desc Total Words Analyzed
+                    h2.statcard-number
+                        | {{totalWords}}
+                    small.label.label-success words per second
+                //canvas#sparkline1.sparkline(width='378', height='94', data-chart='spark-line', data-value="[{strokeColor: '#1ca8dd', fillColor:'rgba(28,168,221,.03)', data:[28,68,41,43,96,45,100]}]", data-labels="['a', 'b','c','d','e','f','g']", style='width: 189px; height: 47px;')
+            .col-md-4.m-b
+                .statcard
+                    .p-a.text-center
+                        span.statcard-desc Total Characters
+                        h2.statcard-number
+                            | {{totalCharacters}}
+                        small.label.label-success chars per second
+                    //canvas#sparkline1.sparkline(width='378', height='94', data-chart='spark-line', data-value="[{strokeColor: '#1ca8dd', fillColor:'rgba(28,168,221,.03)', data:[4,34,64,27,96,50,80]}]", data-labels="['a', 'b','c','d','e','f','g']", style='width: 189px; height: 47px;')
+            .col-md-4.m-b
+                .statcard
+                    .p-a.text-center
+                        span.statcard-desc Avg Word Length
+                        h2.statcard-number
+                            | {{avgWordLength}}
+                        small.label.label-success chars per word
+                    //canvas#sparkline1.sparkline(width='378', height='94', data-chart='spark-line', data-value="[{strokeColor: '#1ca8dd', fillColor:'rgba(28,168,221,.03)', data:[12,38,32,60,36,54,68]}]", data-labels="['a', 'b','c','d','e','f','g']", style='width: 189px; height: 47px;')
+        .hr-divider.m-t.m-b-md
+            h3.hr-divider-content.hr-divider-heading Data Flow Visualization
+        .row.statcards
+            #dataflow
+        .hr-divider.m-b-md
+            h3.hr-divider-content.hr-divider-heading Detail Metrics
+        .row
+            .col-md-4.m-b
+                .list-group
+                    h4.list-group-header
+                        | Detail Counts
+                    a(ng-repeat="detailMetric in detailMetrics | orderBy:'wordLength' | limitTo: 10").list-group-item(href='#')
+                        span.pull-right.text-muted {{detailMetric.count}} words
+                        |          Words of length: {{detailMetric.wordLength}}
+
+            .col-md-4.m-b
+                .list-group
+                    h4.list-group-header
+                        | Operational Metrics
+                    a.list-group-item(href='#')
+                        span.pull-right.text-muted {{lastRDDTime}}
+                        |           Latest Completed Microbatch
+                    a.list-group-item(href='#')
+                        span.pull-right.text-muted 3000 ms
+                        |           Spark Batch Interval
+                    a.list-group-item(href='#')
+                        span.pull-right.text-muted 300 msg/s
+                        |           Stream Velocity
+                    a.list-group-item(href='#')
+                        span.pull-right.text-muted 50 msg
+                        |           Consumer Lag
+            .col-md-4.m-b
+                .list-group
+                    h4.list-group-header
+                        | Raw Data Stream
+                    a(ng-repeat="word in words track by $index").list-group-item(href='#')
+                        span.pull-right.text-muted
+                        |          {{word}}

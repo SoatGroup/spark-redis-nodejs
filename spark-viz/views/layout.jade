@@ -1,0 +1,22 @@
+doctype html
+html(ng-app="sparkviz")
+    head
+        title= 'Real Time Spark Data Visualization'
+        link(rel='stylesheet', href='/stylesheets/style.css')
+        link(rel='stylesheet', href='/stylesheets/toolkit-light.css')
+        script(src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js")
+        script(src="https://www.gstatic.com/charts/loader.js")
+        script(src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.min.js")
+        script(src="//cdn.socket.io/socket.io-1.2.1.js")
+        script(src="/angular-socket-io/socket.js")
+        script(src='/libs/chart.js')
+        script(src="/angular-chart/angular-chart.js")
+        script(src="/javascripts/spark-viz.js")
+    body(ng-controller="SparkVizController").with-iconav
+        include navbar
+
+        // main content
+        block content
+
+        script(src='/libs/tablesorter.min.js')
+        script(src='/libs/toolkit.js')
