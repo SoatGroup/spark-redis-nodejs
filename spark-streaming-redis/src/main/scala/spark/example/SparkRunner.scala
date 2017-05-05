@@ -19,7 +19,7 @@ import redis.receiver._
 object SparkRunner {
 
   val tcpPort = 1337
-  val batchDurationMilliseconds = new Duration(4 * 1000)
+  val batchDurationMilliseconds = new Duration(5 * 1000)
   val generateData = true
   val messageSet = "words"
 
@@ -50,8 +50,8 @@ object SparkRunner {
   }
 
   def createStreamingContext(): StreamingContext = {
-    val sparkConf = new SparkConf().setAppName("streaming-example")
-    sparkConf.setMaster("local[*]")
+    val sparkConf = new SparkConf().setAppName("spark-streaming-demo")
+    sparkConf.setMaster("local[2]")
     //sparkConf.set("spark.default.parallelism", Runtime.getRuntime.availableProcessors.toString())
     new StreamingContext(sparkConf, batchDurationMilliseconds)
   }
