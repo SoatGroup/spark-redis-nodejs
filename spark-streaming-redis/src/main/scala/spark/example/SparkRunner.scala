@@ -19,7 +19,7 @@ import redis.receiver._
 object SparkRunner {
 
   val tcpPort = 1337
-  val batchDurationMilliseconds = new Duration(5 * 1000)
+  val batchDurationMilliseconds = new Duration(3 * 1000)
   val generateData = true
   val messageSet = "words"
 
