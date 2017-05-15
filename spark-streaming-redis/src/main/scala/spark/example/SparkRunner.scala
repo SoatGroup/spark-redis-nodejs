@@ -11,7 +11,6 @@ import redis.receiver._
  *
  * See http://spark.apache.org/docs/latest/streaming-programming-guide.html for more info
  *
- * Use "nc -lk 1337" to create local TCP server
  *
  * http://localhost:4040/ to see Spark dashboard
  */
